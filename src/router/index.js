@@ -11,6 +11,7 @@ import AdminDashboard from "../components/AdminDashboard.vue";
 import ManageApplication from "../components/ManageApplication.vue";
 import DormApplicationForm from "../components/DormApplicationForm.vue";
 
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
