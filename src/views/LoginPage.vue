@@ -13,7 +13,7 @@
           <p class="text-white text-lg">VSU Student Portal</p>
         </div>
       </div>
-      <form class="px-7 mt-7 2xl:mt-7 space-around">
+      <form class="px-7 mt-7 2xl:mt-7 space-around" @submit.prevent="AuthUser">
         <div class="space-y-4">
           <div
             class="mt-2 flex items-center relative w-72 border-2 border-gray-300 rounded px-2.5 pb-2 2xl:pb-2.5 pt-3 2x:pt-4"
@@ -22,7 +22,7 @@
               type="text"
               id="default_outlined"
               class="block w-full text-sm bg-transparent outline-none text-black focus:ring-0 peer"
-              v-model="username"
+              v-model="user.username"
             />
             <label
               for="default_outlined"
@@ -37,12 +37,12 @@
           >
             <input
               type="password"
-              id="default_outlined"
+              id="default_outlined1"
               class="block w-full text-sm bg-transparent outline-none text-black focus:ring-0 peer"
-              v-model="password"
+              v-model="user.password"
             />
             <label
-              for="default_outlined"
+              for="default_outlined1"
               class="absolute text-sm text-gray-500 bg-white duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
               >Password <span class="text-red-500">*</span></label
             >
@@ -50,12 +50,11 @@
           </div>
         </div>
         <div class="mt-8 2xl:mt-10 flex">
-          <button
+          <input
+            type="submit"
+            value="LOGIN"
             class="flex mx-auto bg-[#065601] text-white py-1 2x:py-2 px-6 2x:px-7 rounded"
-            @click="auth()"
-          >
-            LOGIN
-          </button>
+          />
         </div>
         <div class="flex justify-center items-center p-5 opacity-60">
           <hr class="w-5 h-px bg-black border-0" />
@@ -101,25 +100,23 @@
 import { ref } from "vue";
 import router from "../router";
 
-const username = ref("");
-const password = ref("");
-const student_username = ref("user");
-const student_password = ref("user");
-const admin_username = ref("admin");
-const admin_password = ref("admin");
+import { useUserStore } from "../stores/users";
 
-const auth = () => {
-  if (
-    student_username.value == username.value &&
-    student_password.value &&
-    password.value
-  ) {
+const user = ref({
+  username: "",
+  password: "",
+});
+
+const user_store = useUserStore();
+
+const AuthUser = () => {
+  user_store.auth(user.value);
+
+  // console.log(user_store.currentUser.user_type);
+
+  if (user_store.currentUser.user_type == "student") {
     router.push("/main/dashboard");
-  } else if (
-    admin_username.value == username.value &&
-    admin_password.value &&
-    password.value
-  ) {
+  } else if (user_store.currentUser.user_type == "admin") {
     router.push("/admin/dashboard");
   }
 };

@@ -10,10 +10,17 @@ import AdminProfile from "../components/AdminProfile.vue";
 import AdminDashboard from "../components/AdminDashboard.vue";
 import ManageApplication from "../components/ManageApplication.vue";
 import DormApplicationForm from "../components/DormApplicationForm.vue";
+import TestingPage from "../views/TestingPage.vue"
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: "/testing",
+      name: "test",
+      component: TestingPage,
+    },
     {
       path: "/",
       name: "signin",

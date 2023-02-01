@@ -1,9 +1,23 @@
 <script setup>
 import { useRouter } from "vue-router";
 import { computed } from "vue";
+import { useUserStore } from "../stores/users";
+import router from "../router";
 const routeName = computed(() => {
   return useRouter().currentRoute.value.name;
 });
+
+const user_store = useUserStore();
+
+const Logout = () => {
+  user_store.deleteCurrentUser();
+
+  // console.log(!null);
+
+  if (user_store.currentUser == null) {
+    router.push("/login");
+  }
+};
 //console.log("Active route: ", routeName.value);
 </script>
 
@@ -28,111 +42,90 @@ const routeName = computed(() => {
           <h2 class="text-white text-md font-normal">Main Campus</h2>
         </div>
         <div class="flex text-white mt-8">
-          <ul class="flex flex-col w-full text-sm text-white">
-            <li class="flex justify-start">
-              <router-link
-                :class="
-                  routeName == 'dashboard'
-                    ? 'active-tab-class'
-                    : 'inactive-tab-class'
-                "
-                to="/main/dashboard"
-                class="flex flex-row items-center border-transparent rounded w-full h-11 2xl:h-12 p-3 mb-1 2xl:mb-3 px-4 outline-none"
-              >
-                <img src="/dashboard-icon.png" class="w-6 h-6" />
+          <ul class="flex flex-col w-full text-sm text-white px-2 space-y-3">
+            <li
+              class="w-full h-12 flex items-center rounded"
+              :class="
+                routeName == 'dashboard'
+                  ? 'active-tab-class'
+                  : 'inactive-tab-class'
+              "
+            >
+              <router-link to="/main/dashboard" class="flex items-center">
+                <img src="/dashboard-icon.png" class="w-6 h-6 ml-4" />
                 <span class="ml-4">Dashboard</span>
               </router-link>
             </li>
-            <li class="flex justify-start">
-              <router-link
-                :class="
-                  routeName == 'profile'
-                    ? 'active-tab-class'
-                    : 'inactive-tab-class'
-                "
-                to="/main/profile"
-                class="flex flex-row items-center border-transparent rounded w-full h-11 2xl:h-12 p-3 mb-1 2xl:mb-3 px-4 outline-none"
-              >
-                <img src="/profile-icon.png" class="w-6 h-6" />
+            <li
+              class="w-full h-12 flex items-center rounded"
+              :class="
+                routeName == 'profile'
+                  ? 'active-tab-class'
+                  : 'inactive-tab-class'
+              "
+            >
+              <router-link to="/main/profile" class="flex items-center">
+                <img src="/profile-icon.png" class="w-6 h-6 ml-4" />
                 <span class="ml-4">User Profile</span>
               </router-link>
             </li>
-            <li class="flex justify-start">
-              <router-link
-                to="#"
-                class="flex flex-row items-center border-transparent rounded w-full h-11 2xl:h-12 p-3 mb-1 2xl:mb-3 px-4 outline-none"
-              >
-                <img src="/class-icon.png" class="w-6 h-5" />
+            <li class="w-full h-12 flex items-center rounded">
+              <router-link to="" class="flex items-center">
+                <img src="/class-icon.png" class="w-6 h-6 ml-4" />
                 <span class="ml-4">My Class</span>
               </router-link>
             </li>
-            <li class="flex justify-start">
-              <router-link
-                to="#"
-                class="flex flex-row items-center border-transparent rounded w-full h-11 2xl:h-12 p-3 mb-1 2xl:mb-3 px-4 outline-none"
-              >
-                <img src="/chart.png" class="w-9 h-8" />
-                <span class="ml-3">Grades</span>
+            <li class="w-full h-12 flex items-center rounded">
+              <router-link to="" class="flex items-center">
+                <img src="/chart.png" class="w-8 h-8 ml-3" />
+                <span class="ml-4">Grades</span>
               </router-link>
             </li>
-            <li class="flex justify-start">
-              <router-link
-                to="#"
-                class="flex flex-row items-center border-transparent rounded w-full h-11 2xl:h-12 p-3 mb-1 2xl:mb-3 px-4 outline-none"
-              >
-                <img src="/payment-icon.png" class="w-7 h-6" />
+            <li class="w-full h-12 flex items-center rounded">
+              <router-link to="" class="flex items-center">
+                <img src="/payment-icon.png" class="w-6 h-6 ml-3" />
                 <span class="ml-4">Payments</span>
               </router-link>
             </li>
-            <li class="flex justify-start">
-              <router-link
-                to="#"
-                class="flex flex-row items-center border-transparent rounded w-full h-11 2xl:h-12 p-3 mb-1 2xl:mb-3 px-4 outline-none"
-              >
-                <img src="/settings-icon.png" class="w-6 h-6" />
+            <li class="w-full h-12 flex items-center rounded">
+              <router-link to="" class="flex items-center">
+                <img src="/settings-icon.png" class="w-6 h-6 ml-3" />
                 <span class="ml-4">Enrollment</span>
               </router-link>
             </li>
-            <li class="flex justify-start">
-              <router-link
-                to="#"
-                class="flex flex-row items-center border-transparent rounded w-full h-11 2xl:h-12 p-3 mb-1 2xl:mb-3 px-4 outline-none"
-              >
-                <img src="/settings-icon.png" class="w-6 h-6" />
+            <li class="w-full h-12 flex items-center rounded">
+              <router-link to="" class="flex items-center">
+                <img src="/settings-icon.png" class="w-6 h-6 ml-3" />
                 <span class="ml-4">Medical Appointment</span>
               </router-link>
             </li>
-            <li class="flex justify-start">
+            <li
+              class="w-full h-12 flex items-center rounded"
+              :class="
+                routeName == 'dorm-application'
+                  ? 'active-tab-class'
+                  : 'inactive-tab-class'
+              "
+            >
               <router-link
-                :class="
-                  routeName == 'dorm-application'
-                    ? 'active-tab-class'
-                    : 'inactive-tab-class'
-                "
                 to="/main/dorm-application"
-                class="flex flex-row items-center border-transparent rounded w-full h-11 2xl:h-12 p-3 mb-1 2xl:mb-3 px-4 outline-none"
+                class="flex items-center"
               >
-                <img src="/application-icon.png" class="w-7 h-7" />
+                <img src="/application-icon.png" class="w-6 h-6 ml-3" />
                 <span class="ml-4">Dorm Application</span>
               </router-link>
             </li>
-            <li class="flex justify-start">
-              <router-link
-                to="#"
-                class="flex flex-row items-center border-transparent rounded w-full h-11 2xl:h-12 p-3 mb-1 2xl:mb-3 px-4 outline-none"
-              >
-                <img src="/settings-icon.png" class="w-6 h-6" />
+            <li class="w-full h-12 flex items-center rounded">
+              <router-link to="" class="flex items-center">
+                <img src="/settings-icon.png" class="w-6 h-6 ml-3" />
                 <span class="ml-4">TPES</span>
               </router-link>
             </li>
-            <li class="flex justify-start">
-              <router-link
-                to="/login"
-                class="flex flex-row items-center border-transparent rounded w-full h-11 2xl:h-12 p-3 mb-1 2xl:mb-3 px-2 outline-none"
-              >
-                <img src="/logout-icon.png" class="w-8 h-8" />
-                <span class="ml-4">Logout</span>
-              </router-link>
+            <li class="w-full h-12 flex items-center rounded">
+              <button class="flex items-center" @:click="Logout()">
+                <img src="/logout-icon.png" class="w-8 h-8 ml-1" />
+                <span class="ml-4">Logout </span>
+              </button>
             </li>
           </ul>
         </div>

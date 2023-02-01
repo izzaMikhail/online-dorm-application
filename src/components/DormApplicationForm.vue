@@ -13,24 +13,28 @@ const dormId = computed(() => route.params.id);
 const currentDorm = computed(() =>
   dorm_store.dorms?.find((d) => d.id == dormId.value)
 );
-//console.log("Current Dorm: ", currentDorm.value);
 
 const dormApplication_input = ref({
   dorm_id: dormId.value,
   mode_of_payment: "",
   semester: "",
 });
-console.log("Dorm Application: ", dormApplication_input.value);
+// application_store.$reset()
+console.log("Dorm Application: ", application_store.applications.length);
 
 const CreateDormApplication = () => {
   if (
-    !dormApplication_input.value.dorm_id ||
     !dormApplication_input.value.mode_of_payment ||
     !dormApplication_input.value.semester
   ) {
     return alert("Please enter all information needed");
   }
-  application_store.create(dormApplication_input.value);
+
+  if (currentDorm.available_beds === "0") {
+    alert("No Available Beds!");
+  } else {
+    application_store.create(dormApplication_input.value);
+  }
 
   dormApplication_input.value = {
     dormId: "",
@@ -68,8 +72,8 @@ const CreateDormApplication = () => {
                 v-model="dormApplication_input.semester"
                 class="w-1/2 px-3 py-1 border-2 border-gray-400 rounded outline-none bg-[#EEEEEE]"
               >
-                <option value="Upper">Upper</option>
-                <option value="Lower">Lower</option>
+                <option value="First Semester">First Semester</option>
+                <option value="Second Semester">Second Semester</option>
               </select>
             </li>
             <li class="space-x-9 flex">
@@ -82,8 +86,8 @@ const CreateDormApplication = () => {
                 v-model="dormApplication_input.mode_of_payment"
                 class="w-1/2 px-3 py-1 border-2 border-gray-400 rounded outline-none bg-[#EEEEEE]"
               >
-                <option value="First Semester">Cash</option>
-                <option value="Second Semester">Gcash</option>
+                <option value="Cash">Cash</option>
+                <option value="Gcash">Gcash</option>
               </select>
             </li>
             <li class="py-5">
