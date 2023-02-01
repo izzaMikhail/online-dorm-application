@@ -8,6 +8,11 @@ const showModal = ref(false);
 const toggleModal = () => {
   showModal.value = !showModal.value;
 };
+
+const editModal = ref(false);
+const toggleEditModal = () => {
+  editModal.value = !editModal.value;
+};
 //end code for modal
 
 // new code with pinia storage
@@ -52,6 +57,20 @@ const CreateDorm = () => {
 const DeleteDorm = (id) => {
   dorm_store.delete(id);
   alert("Dorm has been deleted with ID: " + id);
+};
+
+const changeDormIdChosen = ref(null);
+const dormId = (newId) => {
+  changeDormIdChosen.value = newId;
+};
+
+const currentDorm = computed(() =>
+  dorm_store.dorms?.find((d) => d.id == changeDormIdChosen.value)
+);
+
+const EditDorm = () => {
+  dorm_store.edit(currentDorm.value);
+  toggleEditModal();
 };
 </script>
 <template>
@@ -129,7 +148,8 @@ const DeleteDorm = (id) => {
                     {{ dorm.available_beds }}</span
                   >
                   <span class="h-10 w-32 flex justify-center items-center"
-                    ><button><img src="/edit-icon.png" /></button
+                    ><button @:click="toggleEditModal(), dormId(dorm.id)">
+                      <img src="/edit-icon.png" /></button
                   ></span>
 
                   <button
@@ -207,7 +227,8 @@ const DeleteDorm = (id) => {
                     {{ dorm.available_beds }}</span
                   >
                   <span class="h-10 w-32 flex justify-center items-center"
-                    ><button><img src="/edit-icon.png" /></button
+                    ><button @:click="toggleEditModal(), dormId(dorm.id)">
+                      <img src="/edit-icon.png" /></button
                   ></span>
 
                   <button
@@ -317,6 +338,116 @@ const DeleteDorm = (id) => {
                 <button
                   class="uppercase border-2 border-red-600 hover:bg-red-600 px-6 py-2 rounded text-red-600 hover:text-white"
                   @:click="toggleModal()"
+                >
+                  cancel
+                </button>
+                <input
+                  type="submit"
+                  value="save"
+                  class="uppercase border-2 border-green-600 hover:bg-green-600 px-6 py-2 rounded text-green-600 hover:text-white"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--MODAL FOR EDIT-->
+    <div
+      v-if="editModal"
+      class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex shadow-2xl"
+    >
+      <div class="relative w-auto my-6 mx-auto max-w-xl">
+        <!--content-->
+        <div
+          class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none"
+        >
+          <!--header-->
+          <div
+            class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t"
+          >
+            <h3 class="text-xl font-medium w-full flex justify-center">
+              Add Dormitory
+            </h3>
+            <button
+              class="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+              v-on:click="toggleEditModal()"
+            >
+              <img src="/close-icon.png" class="w-4 h-4" />
+            </button>
+          </div>
+          <!--body-->
+          <div class="w-full h-full">
+            <form
+              @submit.prevent="EditDorm"
+              class="p-12 space-y-5"
+              ref="addForm"
+            >
+              <div class="flex">
+                <h4 class="w-48">Dorm Occupants:</h4>
+                <select
+                  v-model="currentDorm.dorm_occupant"
+                  class="w-48 outline-none border border-gray-700 rounded"
+                >
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+              <div class="flex">
+                <h4 class="w-48">Dorm Location:</h4>
+                <select
+                  v-model="currentDorm.dorm_location"
+                  class="w-48 outline-none border border-gray-700 rounded"
+                >
+                  <option value="Upper">Upper</option>
+                  <option value="Lower">Lower</option>
+                </select>
+              </div>
+              <div class="flex">
+                <h4 class="w-48">Dorm Name:</h4>
+                <input
+                  v-model="currentDorm.dorm_name"
+                  class="w-48 px-1 outline-none border border-gray-700 rounded"
+                  placeholder="Enter Dorm Name"
+                />
+              </div>
+              <div class="flex">
+                <h4 class="w-48">Monthly Rental:</h4>
+                <input
+                  v-model="currentDorm.monthly_rental"
+                  class="w-48 px-1 outline-none border border-gray-700 rounded"
+                  placeholder="Enter Monthly Rental"
+                />
+              </div>
+              <div class="flex">
+                <h4 class="w-48">Bed Capacity:</h4>
+                <input
+                  v-model="currentDorm.bed_capacity"
+                  class="w-48 px-1 outline-none border border-gray-700 rounded"
+                  placeholder="Enter Bed Capacity"
+                />
+              </div>
+              <div class="flex">
+                <h4 class="w-48">No. of Rooms:</h4>
+                <input
+                  v-model="currentDorm.no_of_rooms"
+                  class="w-48 px-1 outline-none border border-gray-700 rounded"
+                  placeholder="Enter No. of Rooms"
+                />
+              </div>
+              <div class="flex">
+                <h4 class="w-48">Available Beds:</h4>
+                <input
+                  v-model="currentDorm.available_beds"
+                  class="w-48 px-1 outline-none border border-gray-700 rounded"
+                  placeholder="Enter Available Beds"
+                />
+              </div>
+              <div class="w-full flex justify-center space-x-5">
+                <button
+                  class="uppercase border-2 border-red-600 hover:bg-red-600 px-6 py-2 rounded text-red-600 hover:text-white"
+                  @:click="toggleEditModal()"
                 >
                   cancel
                 </button>

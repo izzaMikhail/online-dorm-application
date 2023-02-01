@@ -1,10 +1,23 @@
 <script setup>
 import { useRouter } from "vue-router";
 import { computed } from "vue";
+import { useUserStore } from "../stores/users";
+
 const routeName = computed(() => {
   return useRouter().currentRoute.value.name;
 });
 //console.log("Active route: ", routeName.value);
+const user_store = useUserStore();
+
+const Logout = () => {
+  user_store.deleteCurrentUser();
+
+  // console.log(!null);
+
+  if (user_store.currentUser == null) {
+    router.push("/login");
+  }
+};
 </script>
 
 <template>
@@ -88,13 +101,10 @@ const routeName = computed(() => {
             <li
               class="flex justify-start rounded h-11 2xl:h-12 p-1 mb-1 2xl:mb-3"
             >
-              <router-link
-                to="/login"
-                class="flex flex-row items-center focus:outline-none border-transparent ml-1"
-              >
-                <img src="/logout-icon.png" class="w-8 h-8" />
-                <span class="ml-4">Logout</span>
-              </router-link>
+              <button class="flex items-center" @:click="Logout()">
+                <img src="/logout-icon.png" class="w-8 h-8 ml-1" />
+                <span class="ml-4">Logout </span>
+              </button>
             </li>
           </ul>
         </div>

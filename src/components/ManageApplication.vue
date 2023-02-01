@@ -1,9 +1,10 @@
 <script setup>
 import { ref, onMounted, computed, watch } from "vue";
 import { useDormStore } from "../stores/dorms";
+import { useApplicationStore } from "../stores/applications";
 
-const applications_store = useDormStore();
-// console.log("Values: ", applications_store.dormApplications);
+const applications_store = useApplicationStore();
+console.log(applications_store.applications.semester);
 
 // const DeleteDormApplication = (id) => {
 //   dorm_store.deleteApplication(id);
@@ -30,8 +31,8 @@ const applications_store = useDormStore();
             <li
               class="w-full h-full flex text-center font-bold text-base ml-16 space-x-9"
             >
-              <span class="h-10 w-1/6">Name</span>
-              <span class="h-10 w-1/6">Dorm</span>
+              <span class="h-10 w-1/6">Applicant</span>
+              <span class="h-10 w-1/6">Dorm Name</span>
               <span class="h-10 w-1/6">Semester</span>
             </li>
             <li
