@@ -5,6 +5,8 @@ export const useApplicationStore = defineStore("applications", {
   state: () => {
     return {
       applications: [],
+      approved: [],
+      declined: [],
     };
   },
   actions: {
@@ -14,10 +16,31 @@ export const useApplicationStore = defineStore("applications", {
         ...application,
       });
     },
-    delete(id) {
-      this.applications = this.applications.filter(
-        (application) => application.id !== application
+    approvedApplication(id) {
+      let indexToFind = this.applications.findIndex(
+        (application) => application.id === id
       );
+      if (indexToFind > -1) {
+        let approve = this.applications[indexToFind];
+        this.approved.push(approve);
+        this.applications.splice(indexToFind, 1);
+      }
+    },
+    declinedApplication(id) {
+      let indexToFind = this.applications.findIndex(
+        (application) => application.id === id
+      );
+      if (indexToFind > -1) {
+        let decline = this.applications[indexToFind];
+        this.declined.push(decline);
+        this.applications.splice(indexToFind, 1);
+      }
+    },
+    deleteApproved(id) {
+      this.approved = this.approved.filter((approve) => approve.id !== id);
+    },
+    deleteDeclined(id) {
+      this.declined = this.declined.filter((decline) => decline.id !== id);
     },
   },
   persist: true,

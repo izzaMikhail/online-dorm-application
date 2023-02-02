@@ -17,15 +17,15 @@ export const useDormStore = defineStore("dorms", {
     delete(id) {
       this.dorms = this.dorms.filter((dorm) => dorm.id !== id);
     },
-    newEdit(newDorm){
-      this.dorms.filter((dorm) => dorm.id === newDorm.id ) = this.newDorm;
-    },
+
     edit(updatedDorm) {
-      let indexToUpdate = this.dorms.findIndex((dorm) => dorm.id === updatedDorm.id)
-      if(indexToUpdate > -1) {
-         this.dorms[indexToUpdate] = updatedDorm
-      } 
-  }
+      let indexToUpdate = this.dorms.findIndex(
+        (dorm) => dorm.id === updatedDorm.id
+      );
+      if (indexToUpdate > -1) {
+        this.dorms[indexToUpdate] = updatedDorm;
+      }
+    },
   },
   persist: true,
 });
