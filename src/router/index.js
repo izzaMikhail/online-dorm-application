@@ -10,6 +10,7 @@ import AdminProfile from "../components/AdminProfile.vue";
 import AdminDashboard from "../components/AdminDashboard.vue";
 import ManageApplication from "../components/ManageApplication.vue";
 import DormApplicationForm from "../components/DormApplicationForm.vue";
+import Template from "../components/Template.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,6 +49,36 @@ const router = createRouter({
           path: "apply/:id",
           name: "apply",
           component: DormApplicationForm,
+        },
+        {
+          path: "message1",
+          name: "message1",
+          component: Template,
+        },
+        {
+          path: "message2",
+          name: "message2",
+          component: Template,
+        },
+        {
+          path: "message3",
+          name: "message3",
+          component: Template,
+        },
+        {
+          path: "message4",
+          name: "message4",
+          component: Template,
+        },
+        {
+          path: "message5",
+          name: "message5",
+          component: Template,
+        },
+        {
+          path: "message6",
+          name: "message6",
+          component: Template,
         },
       ],
     },

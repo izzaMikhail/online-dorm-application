@@ -13,7 +13,7 @@ const total_applicants = ref(application_store.applications.length);
       class="bg-[#065601] w-[1130px] h-[55px] flex items-center px-5 rounded mx-auto mt-24"
     >
       <p class="text-white px-5 text-lg">
-        Total Dormitories Application: {{ total_applicants }}
+        Total Dormitory Applications: {{ total_applicants }}
       </p>
     </div>
   </div>

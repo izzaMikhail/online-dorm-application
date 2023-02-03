@@ -42,6 +42,8 @@ export const useUserStore = defineStore("users", {
       );
       if (indexToFind > -1) {
         this.currentUser = this.users[indexToFind];
+      } else {
+        alert("INCORRECT USERNAME OR PASSWORD!");
       }
     },
     deleteCurrentUser() {

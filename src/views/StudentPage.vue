@@ -69,32 +69,67 @@ const Logout = () => {
                 <span class="ml-4">User Profile</span>
               </router-link>
             </li>
-            <li class="w-full h-12 flex items-center rounded">
-              <router-link to="" class="flex items-center">
+            <li
+              class="w-full h-12 flex items-center rounded"
+              :class="
+                routeName == 'message1'
+                  ? 'active-tab-class'
+                  : 'inactive-tab-class'
+              "
+            >
+              <router-link to="/main/message1" class="flex items-center">
                 <img src="/class-icon.png" class="w-6 h-6 ml-4" />
                 <span class="ml-4">My Class</span>
               </router-link>
             </li>
-            <li class="w-full h-12 flex items-center rounded">
-              <router-link to="" class="flex items-center">
+            <li
+              class="w-full h-12 flex items-center rounded"
+              :class="
+                routeName == 'message2'
+                  ? 'active-tab-class'
+                  : 'inactive-tab-class'
+              "
+            >
+              <router-link to="/main/message2" class="flex items-center">
                 <img src="/chart.png" class="w-8 h-8 ml-3" />
                 <span class="ml-4">Grades</span>
               </router-link>
             </li>
-            <li class="w-full h-12 flex items-center rounded">
-              <router-link to="" class="flex items-center">
+            <li
+              class="w-full h-12 flex items-center rounded"
+              :class="
+                routeName == 'message3'
+                  ? 'active-tab-class'
+                  : 'inactive-tab-class'
+              "
+            >
+              <router-link to="/main/message3" class="flex items-center">
                 <img src="/payment-icon.png" class="w-6 h-6 ml-3" />
                 <span class="ml-4">Payments</span>
               </router-link>
             </li>
-            <li class="w-full h-12 flex items-center rounded">
-              <router-link to="" class="flex items-center">
+            <li
+              class="w-full h-12 flex items-center rounded"
+              :class="
+                routeName == 'message4'
+                  ? 'active-tab-class'
+                  : 'inactive-tab-class'
+              "
+            >
+              <router-link to="/main/message4" class="flex items-center">
                 <img src="/settings-icon.png" class="w-6 h-6 ml-3" />
                 <span class="ml-4">Enrollment</span>
               </router-link>
             </li>
-            <li class="w-full h-12 flex items-center rounded">
-              <router-link to="" class="flex items-center">
+            <li
+              class="w-full h-12 flex items-center rounded"
+              :class="
+                routeName == 'message5'
+                  ? 'active-tab-class'
+                  : 'inactive-tab-class'
+              "
+            >
+              <router-link to="/main/message5" class="flex items-center">
                 <img src="/settings-icon.png" class="w-6 h-6 ml-3" />
                 <span class="ml-4">Medical Appointment</span>
               </router-link>
@@ -115,8 +150,15 @@ const Logout = () => {
                 <span class="ml-4">Dorm Application</span>
               </router-link>
             </li>
-            <li class="w-full h-12 flex items-center rounded">
-              <router-link to="" class="flex items-center">
+            <li
+              class="w-full h-12 flex items-center rounded"
+              :class="
+                routeName == 'message6'
+                  ? 'active-tab-class'
+                  : 'inactive-tab-class'
+              "
+            >
+              <router-link to="/main/message6" class="flex items-center">
                 <img src="/settings-icon.png" class="w-6 h-6 ml-3" />
                 <span class="ml-4">TPES</span>
               </router-link>
