@@ -118,6 +118,8 @@ const AuthUser = () => {
     router.push("/main/dashboard");
   } else if (user_store.currentUser.user_type == "admin") {
     router.push("/admin/dashboard");
+  } else {
+    alert("INCORRECT USERNAME OR PASSWORD!");
   }
 };
 </script>

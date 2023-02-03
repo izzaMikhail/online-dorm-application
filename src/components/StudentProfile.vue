@@ -1,14 +1,5 @@
 <script setup>
 import { ref } from "vue";
-const student = ref([
-  {
-    name: "Franco Mikhail C. Lubaton",
-    student_ID: "20-1-00751",
-    course: "Computer Science",
-    gender: "Male",
-    status: "regular",
-  },
-]);
 </script>
 
 <template>
