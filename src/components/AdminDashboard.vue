@@ -1,5 +1,9 @@
 <script setup>
-import { ref, onMounted, computed, watch } from "vue";
+import { ref } from "vue";
+import { useApplicationStore } from "../stores/applications";
+
+const application_store = useApplicationStore();
+const total_applicants = ref(application_store.applications.length);
 </script>
 
 <template>
@@ -8,7 +12,9 @@ import { ref, onMounted, computed, watch } from "vue";
     <div
       class="bg-[#065601] w-[1130px] h-[55px] flex items-center px-5 rounded mx-auto mt-24"
     >
-      <p class="text-white px-5 text-lg">Total Dormitories Application: 1</p>
+      <p class="text-white px-5 text-lg">
+        Total Dormitories Application: {{ total_applicants }}
+      </p>
     </div>
   </div>
 </template>

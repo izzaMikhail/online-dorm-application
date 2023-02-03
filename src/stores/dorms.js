@@ -17,15 +17,25 @@ export const useDormStore = defineStore("dorms", {
     delete(id) {
       this.dorms = this.dorms.filter((dorm) => dorm.id !== id);
     },
-    newEdit(newDorm){
-      this.dorms.filter((dorm) => dorm.id === newDorm.id ) = this.newDorm;
-    },
+
     edit(updatedDorm) {
-      let indexToUpdate = this.dorms.findIndex((dorm) => dorm.id === updatedDorm.id)
-      if(indexToUpdate > -1) {
-         this.dorms[indexToUpdate] = updatedDorm
-      } 
-  }
+      let indexToUpdate = this.dorms.findIndex(
+        (dorm) => dorm.id === updatedDorm.id
+      );
+      if (indexToUpdate > -1) {
+        this.dorms[indexToUpdate] = updatedDorm;
+      }
+    },
+    decrement(id) {
+      let indexToUpdate = this.dorms.findIndex((dorm) => dorm.id === id);
+      console.log("To update", id);
+      if (indexToUpdate > -1) {
+        let num = Number(this.dorms[indexToUpdate].available_beds);
+        console.log("Available Beds: ", num);
+        num -= 1;
+        this.dorms[indexToUpdate].available_beds = num;
+      }
+    },
   },
   persist: true,
 });

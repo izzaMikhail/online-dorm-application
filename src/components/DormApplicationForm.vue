@@ -3,9 +3,13 @@ import { ref, onMounted, computed } from "vue";
 import { useApplicationStore } from "../stores/applications";
 import { useDormStore } from "../stores/dorms";
 import { useRoute } from "vue-router";
+import { useUserStore } from "../stores/users";
+import router from "../router";
 
 const application_store = useApplicationStore();
 const dorm_store = useDormStore();
+const user_store = useUserStore();
+// console.log(user_store.currentUser.name);
 
 const route = useRoute();
 const dormId = computed(() => route.params.id);
@@ -16,11 +20,14 @@ const currentDorm = computed(() =>
 
 const dormApplication_input = ref({
   dorm_id: dormId.value,
+  applicant_name: user_store.currentUser.name,
+  dorm_name: currentDorm.value.dorm_name,
   mode_of_payment: "",
   semester: "",
 });
-// application_store.$reset()
+//application_store.$reset();
 console.log("Dorm Application: ", application_store.applications.length);
+console.log(currentDorm.value.dorm_name);
 
 const CreateDormApplication = () => {
   if (
@@ -33,13 +40,17 @@ const CreateDormApplication = () => {
   if (currentDorm.available_beds === "0") {
     alert("No Available Beds!");
   } else {
+    alert("Dorm Application was successfully submitted");
     application_store.create(dormApplication_input.value);
+    router.push("/main/dashboard");
   }
 
   dormApplication_input.value = {
     dormId: "",
+    applicant_name: "",
     semester: "",
     mode_of_payment: "",
+    dorm_name: "",
   };
   // console.log(dormApplication_store.dormApplications.value);
 };

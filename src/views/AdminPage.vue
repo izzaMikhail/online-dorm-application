@@ -2,7 +2,7 @@
 import { useRouter } from "vue-router";
 import { computed } from "vue";
 import { useUserStore } from "../stores/users";
-
+import router from "../router";
 const routeName = computed(() => {
   return useRouter().currentRoute.value.name;
 });
