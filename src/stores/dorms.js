@@ -26,6 +26,16 @@ export const useDormStore = defineStore("dorms", {
         this.dorms[indexToUpdate] = updatedDorm;
       }
     },
+    decrement(id) {
+      let indexToUpdate = this.dorms.findIndex((dorm) => dorm.id === id);
+      console.log("To update", id);
+      if (indexToUpdate > -1) {
+        let num = Number(this.dorms[indexToUpdate].available_beds);
+        console.log("Available Beds: ", num);
+        num -= 1;
+        this.dorms[indexToUpdate].available_beds = num;
+      }
+    },
   },
   persist: true,
 });

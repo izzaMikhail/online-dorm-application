@@ -10,7 +10,7 @@ export const useUserStore = defineStore("users", {
           name: "Franco Mikhail C. Lubaton",
           username: "20-1-00751",
           password: "prangko2001",
-          gender: "male",
+          gender: "Male",
           user_type: "student",
         },
         {
@@ -18,7 +18,7 @@ export const useUserStore = defineStore("users", {
           name: "Juana Dela Cruz",
           username: "20-1-00752",
           password: "1234",
-          gender: "female",
+          gender: "Female",
           user_type: "student",
         },
         {
@@ -26,7 +26,7 @@ export const useUserStore = defineStore("users", {
           name: "Admin 123",
           username: "admin",
           password: "admin",
-          gender: "male",
+          gender: "Male",
           user_type: "admin",
         },
       ],

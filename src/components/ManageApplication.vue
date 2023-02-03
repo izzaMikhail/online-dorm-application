@@ -6,9 +6,11 @@ import { useUserStore } from "../stores/users";
 
 const applications_store = useApplicationStore();
 const user_store = useUserStore();
+const dorm_store = useDormStore();
 
 const Approved = (id) => {
   applications_store.approvedApplication(id);
+  dorm_store.decrement(id);
 };
 const Declined = (id) => {
   applications_store.declinedApplication(id);

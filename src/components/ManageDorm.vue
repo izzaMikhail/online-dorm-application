@@ -39,7 +39,6 @@ const CreateDorm = () => {
   ) {
     return alert("Please enter all information needed");
   }
-  // console.log("dorm input value:", dorm_input.value);
   dorm_store.create(dorm_input.value);
 
   dorm_input.value = {
@@ -70,6 +69,7 @@ const currentDorm = computed(() =>
 
 const EditDorm = () => {
   dorm_store.edit(currentDorm.value);
+
   toggleEditModal();
 };
 </script>
