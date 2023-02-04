@@ -6,7 +6,6 @@ import { useUserStore } from "../stores/users";
 const dorm_store = useDormStore();
 const user = useUserStore();
 
-const user_gender_uppercase = user.currentUser.gender.toUpperCase();
 const user_gender = user.currentUser.gender;
 </script>
 <template>
@@ -28,9 +27,7 @@ const user_gender = user.currentUser.gender;
             <li
               class="w-full h-full flex justify-center text-center font-bold text-base"
             >
-              <span class="h-10 w-1/5"
-                >{{ user_gender_uppercase }} Dormitory</span
-              >
+              <span class="h-10 w-1/5">{{ user_gender }} Dormitory</span>
               <span class="h-10 w-1/5">Monthly Rental</span>
               <span class="h-10 w-1/5">Bed Capacity</span>
               <span class="h-10 w-1/5">No. of Rooms</span>
@@ -89,9 +86,7 @@ const user_gender = user.currentUser.gender;
             <li
               class="w-full h-full flex justify-center text-center font-bold text-base"
             >
-              <span class="h-10 w-1/5"
-                >{{ user_gender_uppercase }} Dormitory</span
-              >
+              <span class="h-10 w-1/5">{{ user_gender }} Dormitory</span>
               <span class="h-10 w-1/5">Monthly Rental</span>
               <span class="h-10 w-1/5">Bed Capacity</span>
               <span class="h-10 w-1/5">No. of Rooms</span>
